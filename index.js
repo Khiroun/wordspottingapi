@@ -14,11 +14,17 @@ mongoose.connect(
 );
 
 app.get("/ws", async (req, res) => {
-  const ratio = req.body.ratio;
+  let ratio = req.query.ratio;
+  const distance = 0.1;
+  if (!ratio)
+    return res.json({
+      error: "ratio not found",
+    });
+  ratio = parseFloat(ratio);
   data = await Point.find({
     ratio: {
-      $gt: ratio - 1,
-      $lt: ratio + 1,
+      $gt: ratio - distance,
+      $lt: ratio + distance,
     },
   })
     .limit(100)
