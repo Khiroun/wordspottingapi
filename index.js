@@ -12,13 +12,8 @@ mongoose.connect(
     console.log("Database connected");
   }
 );
-app.get("/ws", (req, res) => {
-  res.status(200).send({
-    h: 2,
-  });
-});
 
-app.post("/ws", async (req, res) => {
+app.get("/ws", async (req, res) => {
   const ratio = req.body.ratio;
   data = await Point.find({
     ratio: {
