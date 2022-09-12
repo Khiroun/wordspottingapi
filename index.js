@@ -15,7 +15,7 @@ mongoose.connect(
 
 app.get("/ws", async (req, res) => {
   let ratio = req.query.ratio;
-  const distance = 0.05;
+  const distance = 0.08;
   if (!ratio)
     return res.json({
       error: "ratio not found",
